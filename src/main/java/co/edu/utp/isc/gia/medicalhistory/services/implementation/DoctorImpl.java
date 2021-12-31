@@ -3,7 +3,7 @@ package co.edu.utp.isc.gia.medicalhistory.services.implementation;
 import co.edu.utp.isc.gia.medicalhistory.data.entities.DoctorEntity;
 import co.edu.utp.isc.gia.medicalhistory.data.repositories.DoctorRepository;
 import co.edu.utp.isc.gia.medicalhistory.services.DoctorService;
-import co.edu.utp.isc.gia.medicalhistory.web.dtos.DoctorDto;
+import co.edu.utp.isc.gia.medicalhistory.web.dtos.DoctorDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,25 +26,25 @@ public class DoctorImpl implements DoctorService {
     }
 
     @Override
-    public DoctorDto getDoctor(Long doctorId) {
+    public DoctorDTO getDoctor(Long doctorId) {
         if(doctorRepository.existsById(doctorId)){
-            return modelMapper.map(doctorRepository.findById(doctorId).get(), DoctorDto.class);
+            return modelMapper.map(doctorRepository.findById(doctorId).get(), DoctorDTO.class);
         }
-        else return new DoctorDto();
+        else return new DoctorDTO();
     }
 
     @Override
-    public DoctorDto saveDoctor(DoctorDto doctorDto) {
+    public DoctorDTO saveDoctor(DoctorDTO doctorDto) {
         if(doctorRepository.existsById(doctorDto.getDoctorId())){
-            return new DoctorDto();
+            return new DoctorDTO();
         }
         else{
-            return modelMapper.map(doctorRepository.save(modelMapper.map(doctorDto, DoctorEntity.class)), DoctorDto.class);
+            return modelMapper.map(doctorRepository.save(modelMapper.map(doctorDto, DoctorEntity.class)), DoctorDTO.class);
         }
     }
 
     @Override
-    public boolean updateDoctor(DoctorDto doctorDto) {
+    public boolean updateDoctor(DoctorDTO doctorDto) {
         if(doctorRepository.existsById(doctorDto.getDoctorId())){
             doctorRepository.save(modelMapper.map(doctorDto, DoctorEntity.class));
             return true;
@@ -64,11 +64,11 @@ public class DoctorImpl implements DoctorService {
     }
 
     @Override
-    public List<DoctorDto> getAllDoctors() {
-        List<DoctorDto> doctorDtos = new ArrayList<>();
+    public List<DoctorDTO> getAllDoctors() {
+        List<DoctorDTO> doctorDTOS = new ArrayList<>();
         doctorRepository.findAll().forEach(doctorEntity -> {
-            doctorDtos.add(modelMapper.map(doctorEntity, DoctorDto.class));
+            doctorDTOS.add(modelMapper.map(doctorEntity, DoctorDTO.class));
         });
-        return doctorDtos;
+        return doctorDTOS;
     }
 }

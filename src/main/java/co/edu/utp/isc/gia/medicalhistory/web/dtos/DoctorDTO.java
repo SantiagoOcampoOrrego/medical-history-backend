@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 @Data
 @AllArgsConstructor @NoArgsConstructor
-public class DoctorDto implements Serializable {
+public class DoctorDTO implements Serializable {
     private Long doctorId;
     private String firstName;
     private String lastName;

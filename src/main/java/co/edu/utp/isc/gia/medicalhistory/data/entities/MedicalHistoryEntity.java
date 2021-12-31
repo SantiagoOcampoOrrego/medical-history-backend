@@ -19,14 +19,8 @@ public class MedicalHistoryEntity implements Serializable {
     @Column(name = "ID_HISTORIA")
     private Long historyId;
 
-    @Column(name = "ALERGIAS")
-    private String drugAllergies;
-
-    @Column(name = "OPERACIONES")
-    private String operations;
-
     @Column(name = "MEDICACION_ACTUAL")
-    private String currentMedications;
+    private String currentMedication;
 
     @Column(name = "HACE_EJERCICIO")
     private boolean doExercise;
@@ -47,10 +41,15 @@ public class MedicalHistoryEntity implements Serializable {
     private double height;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ID_USUARIO", foreignKey = @ForeignKey(name = "uId"))
+    @JoinColumn(name = "FK_USUARIO")
     private PatientEntity patientEntity;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "medicalHistoryEntity")
     private List<ProcedureEntity> procedureEntities;
 
+    @ManyToMany(mappedBy = "medicalHistoryEntityList")
+    private List<DrugAllergyEntity> drugAllergies;
+
+    @ManyToMany(mappedBy = "medicalHistoryEntityList")
+    private List<FamiliarDiseaseEntity> familiarDiseases;
 }

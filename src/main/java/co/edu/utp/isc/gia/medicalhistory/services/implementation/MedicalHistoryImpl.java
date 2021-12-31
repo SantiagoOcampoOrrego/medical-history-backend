@@ -5,8 +5,7 @@ import co.edu.utp.isc.gia.medicalhistory.data.entities.PatientEntity;
 import co.edu.utp.isc.gia.medicalhistory.data.repositories.MedicalHistoryRepository;
 import co.edu.utp.isc.gia.medicalhistory.services.MedicalHistoryService;
 import co.edu.utp.isc.gia.medicalhistory.services.PatientService;
-import co.edu.utp.isc.gia.medicalhistory.web.dtos.MedicalHistoryDto;
-import co.edu.utp.isc.gia.medicalhistory.web.dtos.PatientDto;
+import co.edu.utp.isc.gia.medicalhistory.web.dtos.MedicalHistoryDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,22 +29,22 @@ public class MedicalHistoryImpl implements MedicalHistoryService {
     }
 
     @Override
-    public MedicalHistoryDto getMedicalHistory(Long medicalHistoryId) {
+    public MedicalHistoryDTO getMedicalHistory(Long medicalHistoryId) {
         if(medicalHistoryRepository.existsById(medicalHistoryId)){
-            return modelMapper.map(medicalHistoryRepository.findById(medicalHistoryId).get(), MedicalHistoryDto.class);
+            return modelMapper.map(medicalHistoryRepository.findById(medicalHistoryId).get(), MedicalHistoryDTO.class);
         }
-        else return new MedicalHistoryDto();
+        else return new MedicalHistoryDTO();
     }
 
     @Override
-    public MedicalHistoryDto saveMedicalHistory(MedicalHistoryDto medicalHistoryDto) {
+    public MedicalHistoryDTO saveMedicalHistory(MedicalHistoryDTO medicalHistoryDto) {
         MedicalHistoryEntity medicalHistoryEntity = modelMapper.map(medicalHistoryDto, MedicalHistoryEntity.class);
         medicalHistoryEntity.setPatientEntity(modelMapper.map(patientService.getPatient(medicalHistoryDto.getPatientId()), PatientEntity.class));
-        return modelMapper.map(medicalHistoryRepository.save(medicalHistoryEntity), MedicalHistoryDto.class);
+        return modelMapper.map(medicalHistoryRepository.save(medicalHistoryEntity), MedicalHistoryDTO.class);
     }
 
     @Override
-    public boolean updateMedicalHistory(MedicalHistoryDto medicalHistoryDto) {
+    public boolean updateMedicalHistory(MedicalHistoryDTO medicalHistoryDto) {
         if(medicalHistoryRepository.existsById(medicalHistoryDto.getHistoryId())){
             medicalHistoryRepository.save(modelMapper.map(medicalHistoryDto, MedicalHistoryEntity.class));
             return true;
@@ -63,8 +62,8 @@ public class MedicalHistoryImpl implements MedicalHistoryService {
     }
 
     @Override
-    public MedicalHistoryDto getHistoryByPatientEntity(Long patientId) {
+    public MedicalHistoryDTO getHistoryByPatientEntity(Long patientId) {
         PatientEntity patientEntity = modelMapper.map(patientService.getPatient(patientId), PatientEntity.class);
-        return modelMapper.map(medicalHistoryRepository.findByPatientEntity(patientEntity), MedicalHistoryDto.class);
+        return modelMapper.map(medicalHistoryRepository.findByPatientEntity(patientEntity), MedicalHistoryDTO.class);
     }
 }

@@ -1,13 +1,13 @@
 package co.edu.utp.isc.gia.medicalhistory.services;
 
-import co.edu.utp.isc.gia.medicalhistory.web.dtos.DoctorDto;
+import co.edu.utp.isc.gia.medicalhistory.web.dtos.DoctorDTO;
 
 import java.util.List;
 
 public interface DoctorService {
-    DoctorDto getDoctor(Long doctorId);
-    DoctorDto saveDoctor(DoctorDto doctorDto);
-    boolean updateDoctor(DoctorDto doctorDto);
+    DoctorDTO getDoctor(Long doctorId);
+    DoctorDTO saveDoctor(DoctorDTO doctorDto);
+    boolean updateDoctor(DoctorDTO doctorDto);
     boolean deleteDoctor(Long doctorId);
-    List<DoctorDto> getAllDoctors();
+    List<DoctorDTO> getAllDoctors();
 }

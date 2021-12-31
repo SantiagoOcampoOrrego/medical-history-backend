@@ -1,14 +1,11 @@
 package co.edu.utp.isc.gia.medicalhistory.services;
 
-import co.edu.utp.isc.gia.medicalhistory.web.dtos.MedicalHistoryDto;
-import co.edu.utp.isc.gia.medicalhistory.web.dtos.ProcedureDto;
-
-import java.util.List;
+import co.edu.utp.isc.gia.medicalhistory.web.dtos.MedicalHistoryDTO;
 
 public interface MedicalHistoryService {
-    MedicalHistoryDto getMedicalHistory(Long medicalHistoryId);
-    MedicalHistoryDto saveMedicalHistory(MedicalHistoryDto medicalHistoryDto);
-    boolean updateMedicalHistory(MedicalHistoryDto medicalHistoryDto);
+    MedicalHistoryDTO getMedicalHistory(Long medicalHistoryId);
+    MedicalHistoryDTO saveMedicalHistory(MedicalHistoryDTO medicalHistoryDto);
+    boolean updateMedicalHistory(MedicalHistoryDTO medicalHistoryDto);
     boolean deleteMedicalHistory(Long medicalHistoryId);
-    MedicalHistoryDto getHistoryByPatientEntity(Long patientId);
+    MedicalHistoryDTO getHistoryByPatientEntity(Long patientId);
 }

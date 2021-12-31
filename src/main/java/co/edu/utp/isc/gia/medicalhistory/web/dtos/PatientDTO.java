@@ -9,7 +9,7 @@ import java.util.Date;
 
 @Data
 @AllArgsConstructor @NoArgsConstructor
-public class PatientDto implements Serializable {
+public class PatientDTO implements Serializable {
     private Long patientId;
     private String firstName;
     private String lastName;

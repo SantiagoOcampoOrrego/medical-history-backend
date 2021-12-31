@@ -29,11 +29,14 @@ public class ProcedureEntity implements Serializable {
     private String treatment;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ID_DOCTOR", foreignKey = @ForeignKey(name = "ID_DOCTOR"))
+    @JoinColumn(name = "FK_DOCTOR")
     private DoctorEntity doctorEntity;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ID_HISTORIA", foreignKey = @ForeignKey(name = "ID_HISTORIA"))
+    @JoinColumn(name = "FK_HISTORIA")
     private MedicalHistoryEntity medicalHistoryEntity;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "FK_TIPO_PROCEDIMIENTO")
+    private ProcedureTypeEntity procedureTypeEntity;
 }

@@ -1,7 +1,7 @@
 package co.edu.utp.isc.gia.medicalhistory.web.controllers;
 
 import co.edu.utp.isc.gia.medicalhistory.services.ProcedureService;
-import co.edu.utp.isc.gia.medicalhistory.web.dtos.ProcedureDto;
+import co.edu.utp.isc.gia.medicalhistory.web.dtos.ProcedureDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,27 +14,27 @@ public class ProcedureController {
     private ProcedureService procedureService;
 
     @GetMapping()
-    public ProcedureDto get(@RequestParam("id") Long procedureId){
+    public ProcedureDTO getProcedure(@RequestParam("id") Long procedureId){
         return procedureService.getProcedure(procedureId);
     }
 
     @PostMapping()
-    public ProcedureDto save(@RequestBody ProcedureDto procedureDto){
+    public ProcedureDTO saveProcedure(@RequestBody ProcedureDTO procedureDto){
         return procedureService.saveProcedure(procedureDto);
     }
 
     @PutMapping()
-    public boolean update(@RequestBody ProcedureDto procedureDto){
+    public boolean updateProcedure(@RequestBody ProcedureDTO procedureDto){
         return procedureService.updateProcedure(procedureDto);
     }
 
     @DeleteMapping()
-    public boolean delete(@RequestParam("id") Long procedureId){
+    public boolean deleteProcedure(@RequestParam("id") Long procedureId){
         return procedureService.deleteProcedure(procedureId);
     }
 
     @GetMapping("historia")
-    public List<ProcedureDto> getAllByHistoryId(@RequestParam("id") Long historyId){
+    public List<ProcedureDTO> getAllProceduresByHistoryId(@RequestParam("id") Long historyId){
         return procedureService.getAllProceduresByHistoryId(historyId);
     }
 }

@@ -3,7 +3,7 @@ package co.edu.utp.isc.gia.medicalhistory.services.implementation;
 import co.edu.utp.isc.gia.medicalhistory.data.entities.PatientEntity;
 import co.edu.utp.isc.gia.medicalhistory.data.repositories.PatientRepository;
 import co.edu.utp.isc.gia.medicalhistory.services.PatientService;
-import co.edu.utp.isc.gia.medicalhistory.web.dtos.PatientDto;
+import co.edu.utp.isc.gia.medicalhistory.web.dtos.PatientDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,27 +26,27 @@ public class PatientImpl implements PatientService {
     }
 
     @Override
-    public PatientDto getPatient(Long patientId) {
+    public PatientDTO getPatient(Long patientId) {
         if(patientRepository.existsById(patientId)){
-            return modelMapper.map(patientRepository.findById(patientId).get(), PatientDto.class);
+            return modelMapper.map(patientRepository.findById(patientId).get(), PatientDTO.class);
         }
         else{
-            return new PatientDto();
+            return new PatientDTO();
         }
     }
 
     @Override
-    public PatientDto savePatient(PatientDto patientDto) {
+    public PatientDTO savePatient(PatientDTO patientDto) {
         if(patientRepository.existsById(patientDto.getPatientId())){
             return null;
         }
         else{
-            return modelMapper.map(patientRepository.save(modelMapper.map(patientDto, PatientEntity.class)), PatientDto.class);
+            return modelMapper.map(patientRepository.save(modelMapper.map(patientDto, PatientEntity.class)), PatientDTO.class);
         }
     }
 
     @Override
-    public boolean updatePatient(PatientDto patientDto) {
+    public boolean updatePatient(PatientDTO patientDto) {
         if(patientRepository.existsById(patientDto.getPatientId())){
             patientRepository.save(modelMapper.map(patientDto, PatientEntity.class));
             return true;
@@ -64,13 +64,13 @@ public class PatientImpl implements PatientService {
     }
 
     @Override
-    public List<PatientDto> getAllPatients() {
-        List<PatientDto> patientDtos = new ArrayList<>();
+    public List<PatientDTO> getAllPatients() {
+        List<PatientDTO> patientDTOS = new ArrayList<>();
 
         patientRepository.findAll().forEach(patientEntity -> {
-            patientDtos.add(modelMapper.map(patientEntity, PatientDto.class));
+            patientDTOS.add(modelMapper.map(patientEntity, PatientDTO.class));
         });
 
-        return patientDtos;
+        return patientDTOS;
     }
 }

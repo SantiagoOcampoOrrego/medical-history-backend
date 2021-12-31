@@ -1,7 +1,7 @@
 package co.edu.utp.isc.gia.medicalhistory.web.controllers;
 
 import co.edu.utp.isc.gia.medicalhistory.services.DoctorService;
-import co.edu.utp.isc.gia.medicalhistory.web.dtos.DoctorDto;
+import co.edu.utp.isc.gia.medicalhistory.web.dtos.DoctorDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,27 +14,27 @@ public class DoctorController {
     private DoctorService doctorService;
 
     @GetMapping()
-    public DoctorDto get(@RequestParam("id") Long doctorId){
+    public DoctorDTO getDoctor(@RequestParam("id") Long doctorId){
         return doctorService.getDoctor(doctorId);
     }
 
     @PostMapping()
-    public DoctorDto save(@RequestBody DoctorDto doctorDto){
+    public DoctorDTO saveDoctor(@RequestBody DoctorDTO doctorDto){
         return doctorService.saveDoctor(doctorDto);
     }
 
     @PutMapping()
-    public boolean update(@RequestBody DoctorDto doctorDto){
+    public boolean updateDoctor(@RequestBody DoctorDTO doctorDto){
         return doctorService.updateDoctor(doctorDto);
     }
 
     @DeleteMapping()
-    public boolean delete(@RequestParam("id") Long doctorId){
+    public boolean deleteDoctor(@RequestParam("id") Long doctorId){
         return doctorService.deleteDoctor(doctorId);
     }
 
     @GetMapping("todos")
-    public List<DoctorDto> getAll(){
+    public List<DoctorDTO> getAllDoctors(){
         return doctorService.getAllDoctors();
     }
 }
