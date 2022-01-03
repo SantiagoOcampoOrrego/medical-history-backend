@@ -11,9 +11,7 @@ import java.io.Serializable;
 public class MedicalHistoryDTO implements Serializable {
     private Long historyId;
     private Long patientId;
-    private String drugAllergies;
-    private String operations;
-    private String currentMedications;
+    private String currentMedication;
     private boolean doExercise;
     private boolean alcoholConsumption;
     private boolean smoker;
