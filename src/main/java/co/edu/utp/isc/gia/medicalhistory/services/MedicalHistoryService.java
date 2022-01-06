@@ -1,5 +1,7 @@
 package co.edu.utp.isc.gia.medicalhistory.services;
 
+import co.edu.utp.isc.gia.medicalhistory.web.dtos.DrugAllergyDTO;
+import co.edu.utp.isc.gia.medicalhistory.web.dtos.FamiliarDiseaseDTO;
 import co.edu.utp.isc.gia.medicalhistory.web.dtos.MedicalHistoryDTO;
 
 public interface MedicalHistoryService {

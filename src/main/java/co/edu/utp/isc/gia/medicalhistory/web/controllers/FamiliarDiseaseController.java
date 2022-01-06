@@ -39,4 +39,9 @@ public class FamiliarDiseaseController {
         return familiarDiseaseService.getAllFamiliarDiseases();
     }
 
+    @GetMapping("historia")
+    public List<FamiliarDiseaseDTO> getAllFamiliarDiseasesByHistoryId(@RequestParam("id") Long historyId) {
+        return familiarDiseaseService.getAllFamiliarDiseasesByHistoryId(historyId);
+    }
+
 }

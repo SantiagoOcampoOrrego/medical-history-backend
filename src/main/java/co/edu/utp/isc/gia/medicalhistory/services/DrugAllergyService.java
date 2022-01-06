@@ -14,4 +14,6 @@ public interface DrugAllergyService {
     boolean deleteDrugAllergy(Long drugAllergyId);
 
     List<DrugAllergyDTO> getAllDrugsAllergies();
+
+    List<DrugAllergyDTO> getAllDrugsAllergiesByHistoryId(Long historyId);
 }

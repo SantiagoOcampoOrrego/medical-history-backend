@@ -46,7 +46,9 @@ public class MedicalHistoryImpl implements MedicalHistoryService {
     @Override
     public boolean updateMedicalHistory(MedicalHistoryDTO medicalHistoryDto) {
         if(medicalHistoryRepository.existsById(medicalHistoryDto.getHistoryId())){
-            medicalHistoryRepository.save(modelMapper.map(medicalHistoryDto, MedicalHistoryEntity.class));
+            MedicalHistoryEntity medicalHistoryEntity = modelMapper.map(medicalHistoryDto, MedicalHistoryEntity.class);
+            medicalHistoryEntity.setPatientEntity(modelMapper.map(patientService.getPatient(medicalHistoryDto.getPatientId()), PatientEntity.class));
+            medicalHistoryRepository.save(medicalHistoryEntity);
             return true;
         }
         else return false;
@@ -66,4 +68,5 @@ public class MedicalHistoryImpl implements MedicalHistoryService {
         PatientEntity patientEntity = modelMapper.map(patientService.getPatient(patientId), PatientEntity.class);
         return modelMapper.map(medicalHistoryRepository.findByPatientEntity(patientEntity), MedicalHistoryDTO.class);
     }
+
 }

@@ -1,7 +1,10 @@
 package co.edu.utp.isc.gia.medicalhistory.web.controllers;
 
+import co.edu.utp.isc.gia.medicalhistory.data.entities.PatientEntity;
 import co.edu.utp.isc.gia.medicalhistory.services.MedicalHistoryService;
+import co.edu.utp.isc.gia.medicalhistory.services.PatientService;
 import co.edu.utp.isc.gia.medicalhistory.web.dtos.MedicalHistoryDTO;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

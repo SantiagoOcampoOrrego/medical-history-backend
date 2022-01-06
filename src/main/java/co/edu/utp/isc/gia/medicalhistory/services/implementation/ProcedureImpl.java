@@ -3,10 +3,12 @@ package co.edu.utp.isc.gia.medicalhistory.services.implementation;
 import co.edu.utp.isc.gia.medicalhistory.data.entities.DoctorEntity;
 import co.edu.utp.isc.gia.medicalhistory.data.entities.MedicalHistoryEntity;
 import co.edu.utp.isc.gia.medicalhistory.data.entities.ProcedureEntity;
+import co.edu.utp.isc.gia.medicalhistory.data.entities.ProcedureTypeEntity;
 import co.edu.utp.isc.gia.medicalhistory.data.repositories.ProcedureRepository;
 import co.edu.utp.isc.gia.medicalhistory.services.DoctorService;
 import co.edu.utp.isc.gia.medicalhistory.services.MedicalHistoryService;
 import co.edu.utp.isc.gia.medicalhistory.services.ProcedureService;
+import co.edu.utp.isc.gia.medicalhistory.services.ProcedureTypeService;
 import co.edu.utp.isc.gia.medicalhistory.web.dtos.ProcedureDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,9 @@ public class ProcedureImpl implements ProcedureService {
     private MedicalHistoryService medicalHistoryService;
 
     @Autowired
+    private ProcedureTypeService procedureTypeService;
+
+    @Autowired
     private ModelMapper modelMapper;
 
     public ProcedureImpl(ProcedureRepository procedureRepository, DoctorService doctorService, MedicalHistoryService medicalHistoryService, ModelMapper modelMapper) {
@@ -47,6 +52,7 @@ public class ProcedureImpl implements ProcedureService {
         ProcedureEntity procedureEntity = modelMapper.map(procedureDto, ProcedureEntity.class);
         procedureEntity.setDoctorEntity(modelMapper.map(doctorService.getDoctor(procedureDto.getDoctorId()), DoctorEntity.class));
         procedureEntity.setMedicalHistoryEntity(modelMapper.map(medicalHistoryService.getMedicalHistory(procedureDto.getHistoryId()), MedicalHistoryEntity.class));
+        procedureEntity.setProcedureTypeEntity(modelMapper.map(procedureTypeService.getProcedureType(procedureDto.getProcedureTypeId()), ProcedureTypeEntity.class));
         return modelMapper.map(procedureRepository.save(procedureEntity), ProcedureDTO.class);
     }
 
@@ -73,6 +79,16 @@ public class ProcedureImpl implements ProcedureService {
         List<ProcedureDTO> procedureDTOS = new ArrayList<>();
         MedicalHistoryEntity medicalHistoryEntity = modelMapper.map(medicalHistoryService.getMedicalHistory(historyId), MedicalHistoryEntity.class);
         procedureRepository.findAllByMedicalHistoryEntity(medicalHistoryEntity).forEach(procedureEntity -> {
+            procedureDTOS.add(modelMapper.map(procedureEntity, ProcedureDTO.class));
+        });
+        return procedureDTOS;
+    }
+
+    @Override
+    public List<ProcedureDTO> getAllProceduresByDoctorId(Long doctorId) {
+        List<ProcedureDTO> procedureDTOS = new ArrayList<>();
+        DoctorEntity doctorEntity = modelMapper.map(doctorService.getDoctor(doctorId), DoctorEntity.class);
+        procedureRepository.findAllByDoctorEntity(doctorEntity).forEach(procedureEntity -> {
             procedureDTOS.add(modelMapper.map(procedureEntity, ProcedureDTO.class));
         });
         return procedureDTOS;

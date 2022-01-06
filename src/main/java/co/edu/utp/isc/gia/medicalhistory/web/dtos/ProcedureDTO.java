@@ -13,6 +13,7 @@ public class ProcedureDTO implements Serializable {
     private Long procedureId;
     private Long doctorId;
     private Long historyId;
+    private Long procedureTypeId;
     private Date procedureDate;
     private String diagnosis;
     private String treatment;

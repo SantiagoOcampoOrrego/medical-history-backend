@@ -14,4 +14,6 @@ public interface FamiliarDiseaseService {
     boolean deleteFamiliarDisease(Long familiarDiseaseId);
 
     List<FamiliarDiseaseDTO> getAllFamiliarDiseases();
+
+    List<FamiliarDiseaseDTO> getAllFamiliarDiseasesByHistoryId(Long historyId);
 }

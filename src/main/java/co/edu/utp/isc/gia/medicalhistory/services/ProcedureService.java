@@ -10,4 +10,5 @@ public interface ProcedureService {
     boolean updateProcedure(ProcedureDTO procedureDto);
     boolean deleteProcedure(Long procedureId);
     List<ProcedureDTO> getAllProceduresByHistoryId(Long historyId);
+    List<ProcedureDTO> getAllProceduresByDoctorId(Long doctorId);
 }

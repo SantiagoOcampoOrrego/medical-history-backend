@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 
 @Entity
 @Data
@@ -22,12 +21,8 @@ public class DrugAllergyEntity implements Serializable {
     @Column(name = "NOMBRE_MEDICAMENTO")
     private String drugName;
 
-    @JoinTable(
-            name = "REL_ALERGIA_MEDICAMENTOS_HISTORIA",
-            joinColumns = @JoinColumn(name = "FK_ALERGIA_MEDICAMENTO"),
-            inverseJoinColumns = @JoinColumn(name = "FK_HISTORIA_CLINICA")
-    )
-    @ManyToMany(cascade = CascadeType.ALL)
-    private List<MedicalHistoryEntity> medicalHistoryEntityList;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "FK_HISTORIA")
+    private MedicalHistoryEntity medicalHistoryEntity;
 
 }

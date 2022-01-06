@@ -12,4 +12,5 @@ public class FamiliarDiseaseDTO implements Serializable {
     private Long familiarDiseaseId;
     private String diseaseName;
     private String relationship;
+    private Long historyId;
 }

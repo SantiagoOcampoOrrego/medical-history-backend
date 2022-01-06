@@ -47,9 +47,10 @@ public class MedicalHistoryEntity implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "medicalHistoryEntity")
     private List<ProcedureEntity> procedureEntities;
 
-    @ManyToMany(mappedBy = "medicalHistoryEntityList")
-    private List<DrugAllergyEntity> drugAllergies;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "medicalHistoryEntity")
+    private List<DrugAllergyEntity> drugAllergyEntities;
 
-    @ManyToMany(mappedBy = "medicalHistoryEntityList")
-    private List<FamiliarDiseaseEntity> familiarDiseases;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "medicalHistoryEntity")
+    private List<FamiliarDiseaseEntity> familiarDiseaseEntities;
+
 }

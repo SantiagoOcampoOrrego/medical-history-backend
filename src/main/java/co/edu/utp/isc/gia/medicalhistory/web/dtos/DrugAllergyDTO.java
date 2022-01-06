@@ -9,4 +9,5 @@ import lombok.NoArgsConstructor;
 public class DrugAllergyDTO {
     private Long drugAllergyId;
     private String drugName;
+    private Long historyId;
 }

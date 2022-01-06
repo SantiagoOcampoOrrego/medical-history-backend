@@ -37,4 +37,10 @@ public class ProcedureController {
     public List<ProcedureDTO> getAllProceduresByHistoryId(@RequestParam("id") Long historyId){
         return procedureService.getAllProceduresByHistoryId(historyId);
     }
+
+    @GetMapping("doctor")
+    public List<ProcedureDTO> getAllProceduresByDoctorId(@RequestParam("id") Long doctorId){
+        return procedureService.getAllProceduresByDoctorId(doctorId);
+    }
+
 }

@@ -39,4 +39,9 @@ public class DrugAllergyController {
         return drugAllergyService.getAllDrugsAllergies();
     }
 
+    @GetMapping("historia")
+    public List<DrugAllergyDTO> getAllDrugAllergiesByHistoryId(@RequestParam("id") Long historyId) {
+        return drugAllergyService.getAllDrugsAllergiesByHistoryId(historyId);
+    }
+
 }
